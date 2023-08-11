@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Details } from '../details';
-//import { SessionService } from '../state/session.service';
+import { SessionService } from '../state/session.service';
+
 //import { SessionXrplService } from '../state/session-xrpl.service';
 //import { environment } from 'src/environments/environment';
 //import { InviteService } from '../services/invite.service';
@@ -14,19 +15,20 @@ import { Details } from '../details';
 })
 export class WalletCreatorFormComponent {
   model = new Details('','','','','');
-
+  walletid='';
   submitted = false;
   constructor(
     //private inviteService: InviteService,
-    //private sessionService: SessionService,
+    private sessionService: SessionService,
     private router: Router,
     //private sessionXrplService: SessionXrplService,
   ) {
   }
-  async onSubmit() { 
-    let invite_id = '';
+   async onSubmit() { 
+    // let invite_id = '';
 
     this.submitted = true;
+    console.log(this.submitted)
     /* I'm assuming some validation occurs here*/
 
     const firstName = this.model.firstname;
@@ -37,16 +39,18 @@ export class WalletCreatorFormComponent {
     //hardcode answers
     const answers = new Map<string, string>();
     answers.set("hello", "world");  
-
+    //this.walletid = "loading wallet id ...";
     try {
       //wallet creation
-      /*const wallet_id: string = await this.sessionService.createWallet(
+      const wallet_id: string = await this.sessionService.createWallet(
         firstName + ' ' + lastName,
         pin,
         answers,
         phoneNumber
       );
-        */
+      console.log(wallet_id);
+      this.walletid = wallet_id;
+      
       // Autofund the account on creation, later
       /*const autoFundBool = environment.autofundXrp;
       if (autoFundBool) {
@@ -66,8 +70,9 @@ export class WalletCreatorFormComponent {
           );
         });
       }*/
-      this.router.navigate(['/print-wallet']);
+      //this.router.navigate(['/print-wallet']);
     } catch (err) {
+      console.log(err)
       //this is an error notification, need to make component for it, this is is from https://sweetalert2.github.io/
       /*this.notification.swal.fire({
         icon: 'error',
@@ -76,9 +81,9 @@ export class WalletCreatorFormComponent {
         confirmButtonText: 'DONE',
       });*/
       
-      this.router.navigate(['/']);
+      //this.router.navigate(['/']);
     }
-    this.submitted = false;
+    //this.submitted = false;
     
   
     }

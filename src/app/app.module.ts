@@ -9,7 +9,10 @@ import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { WalletCreatorFormComponent } from './wallet-creator-form/wallet-creator-form.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { WalletCreatorFormComponent } from './wallet-creator-form/wallet-creator
     AppRoutingModule,
     BrowserModule,
     CommonModule,
-    FormsModule
+    HttpClientModule,
+    FormsModule,
+    environment.production ? [] : AkitaNgDevtools.forRoot(),
+    AkitaNgRouterStoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
