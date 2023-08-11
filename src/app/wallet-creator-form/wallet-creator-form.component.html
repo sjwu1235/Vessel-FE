@@ -1,0 +1,81 @@
+<main class="bg-dark-gray min-h-screen">
+    <section class="max-w-4xl mx-auto bg-dark-gray text-white font-libre p-4">
+        <div [hidden]="submitted">
+          <h1 class="text-3xl">Create an Escrow Wallet Account</h1>
+          <p>Complete the form to create an independant escrow wallet address, which will display as soon as you submit your details.
+          </p>
+          <form (ngSubmit)="onSubmit()" #detailsForm="ngForm" class="flex flex-col gap-y-2 pt-4 mx-2 sm:mx-4">
+            <div class="flex flex-col gap-y-1">
+              <label for="firstname" class="font-libre font-xs font-bold text-white" required>First Name</label>
+              <input type="text" class="form-control p-4 text-black rounded-sm focus:outline-1 focus:outline-turquoise" id="firstname"
+                     required
+                     [(ngModel)]="model.firstname" name="firstname"
+                     #name="ngModel">
+            </div>
+            <div class="flex flex-col gap-y-1">
+                <label for="lastname" class="font-libre font-xs font-bold text-white">Last Name</label>
+                <input type="text" class="form-control p-4 text-black rounded-sm focus:outline-1 focus:outline-turquoise" id="lastname"
+                       required
+                       [(ngModel)]="model.lastname" name="lastname"
+                       #name="ngModel">
+            </div>
+            <div class="flex flex-col gap-y-1">
+                <label for="number" class="font-libre font-xs font-bold text-white">Phone Number</label>
+                <input type="tel" class="form-control p-4 text-black rounded-sm focus:outline-1 focus:outline-turquoise" id="number"
+                       required
+                       [(ngModel)]="model.number" name="number"
+                       #name="ngModel">
+            </div>
+            <div class="flex flex-col gap-y-1">
+                <label for="pin" class="font-libre font-xs font-bold text-white">Pin</label>
+                <input type="password" class="form-control p-4 text-black rounded-sm focus:outline-1 focus:outline-turquoise" id="pin"
+                       required
+                       [(ngModel)]="model.pin" name="pin"
+                       #name="ngModel">
+            </div>
+            <div class="flex flex-col gap-y-1">
+                <label for="confirmPin" class="font-libre font-xs font-bold text-white">Confirm Pin</label>
+                <input type="password" class="form-control p-4 text-black rounded-sm focus:outline-1 focus:outline-turquoise" id="confirmPin"
+                       required
+                       [(ngModel)]="model.confirmPin" name="confirmPin"
+                       #name="ngModel">
+            </div>
+
+            <!--<mat-form-field>
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="pat@example.com" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>-->
+
+            <div class="flex gap-x-2 mt-4">
+                <button type="submit" class="text-white font-light font-libre bg-orange py-2 px-8 rounded hover:bg-opacity-80" [disabled]="!detailsForm.form.valid">Submit</button>
+                <button type="button" class="text-white font-light font-libre bg-light-gray py-2 px-8 rounded outline-2 outline-offset-1 outline-white hover:bg-opacity-75" (click)="newDetails(); detailsForm.reset()">Clear</button>
+          
+                
+            </div>
+          </form>
+        </div>
+      
+        <div [hidden]="!submitted">
+          <h2>You submitted the following:</h2>
+          <div class="row">
+            <div class="col-xs-3">First Name</div>
+            <div class="col-xs-9">{{ model.firstname }}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">Last Name</div>
+            <div class="col-xs-9">{{ model.lastname }}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">Phone number</div>
+            <div class="col-xs-9">{{ model.number }}</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-3">Pin</div>
+            <div class="col-xs-9">{{ model.pin }}</div>
+          </div>
+          <button type="button" class="text-white font-light font-libre bg-orange py-2 px-8 rounded hover:bg-opacity-80" (click)="submitted=false">Edit</button>
+        </div>
+    </section>
+    
+</main>
