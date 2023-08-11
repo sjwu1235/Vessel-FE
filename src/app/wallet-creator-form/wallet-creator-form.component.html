@@ -1,5 +1,5 @@
 <main class="bg-dark-gray min-h-screen">
-    <section class="max-w-4xl mx-auto bg-dark-gray text-white font-libre p-4">
+    <section class="max-w-4xl mx-auto bg-light-gray text-white font-libre p-4">
         <div [hidden]="submitted">
           <h1 class="text-3xl">Create an Escrow Wallet Account</h1>
           <p>Complete the form to create an independant escrow wallet address, which will display as soon as you submit your details.
@@ -75,6 +75,7 @@
             <div class="col-xs-9">{{ model.pin }}</div>
           </div>
           <button type="button" class="text-white font-light font-libre bg-orange py-2 px-8 rounded hover:bg-opacity-80" (click)="submitted=false">Edit</button>
+          {{walletid}}
         </div>
     </section>
     
