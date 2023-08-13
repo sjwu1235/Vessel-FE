@@ -1,8 +1,14 @@
-import {Component} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Details } from '../details';
 import { SessionService } from '../state/session.service';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 
 //import { SessionXrplService } from '../state/session-xrpl.service';
 //import { environment } from 'src/environments/environment';
@@ -14,21 +20,82 @@ import { SessionService } from '../state/session.service';
   styleUrls: ['./wallet-creator-form.component.css'],
 })
 export class WalletCreatorFormComponent {
-  model = new Details('','','','','');
-  walletid='';
-  submitted = false;
+  registrationForm: FormGroup;
+  model = new Details('', '', '', '', '');
+  walletid = '';
+
   constructor(
     //private inviteService: InviteService,
+    private formBuilder: FormBuilder,
     private sessionService: SessionService,
     private router: Router,
     //private sessionXrplService: SessionXrplService,
-  ) {
+  ) { this.registrationForm = this.generateFormGroup(); }
+
+  get f() {
+    return this.registrationForm.controls;
   }
-   async onSubmit() { 
+
+  generateFormGroup(): FormGroup {
+    return this.formBuilder.group({
+      firstName: [
+        '',
+        Validators.compose([Validators.minLength(2), Validators.required]),
+      ],
+      lastName: [
+        '',
+        Validators.compose([Validators.minLength(2), Validators.required]),
+      ],
+      mobile: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")
+        ]),
+      ],
+      pin: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(10),
+        ]),
+      ],
+      confirmPin: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(10),
+          this.matchValues('pin'),
+        ]),
+      ],
+    });
+  }
+
+  matchValues(
+    matchTo: string
+  ): (arg0: AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null =>
+      !!control?.parent?.value &&
+        control?.value ===
+        (control.parent.controls as { [key: string]: AbstractControl })[matchTo]
+          .value
+        ? null
+        : { mismatch: true };
+  }
+
+  clearForm() {
+    this.registrationForm.reset();
+    this.model = new Details('', '', '', '', '');
+  }
+
+
+  async onSubmit() {
     // let invite_id = '';
 
-    this.submitted = true;
-    console.log(this.submitted)
+    // this.submitted = true;
+    // console.log(this.submitted)
     /* I'm assuming some validation occurs here*/
 
     const firstName = this.model.firstname;
@@ -38,7 +105,7 @@ export class WalletCreatorFormComponent {
 
     //hardcode answers
     const answers = new Map<string, string>();
-    answers.set("hello", "world");  
+    answers.set("hello", "world");
     //this.walletid = "loading wallet id ...";
     try {
       //wallet creation
@@ -50,7 +117,9 @@ export class WalletCreatorFormComponent {
       );
       console.log(wallet_id);
       this.walletid = wallet_id;
-      
+      this.router.navigate(['/display-wallet'])
+
+
       // Autofund the account on creation, later
       /*const autoFundBool = environment.autofundXrp;
       if (autoFundBool) {
@@ -80,16 +149,16 @@ export class WalletCreatorFormComponent {
         text: 'There was a problem creating your wallet, please try again.',
         confirmButtonText: 'DONE',
       });*/
-      
+
       //this.router.navigate(['/']);
     }
     //this.submitted = false;
-    
-  
-    }
+
+
+  }
 
   newDetails() {
-    this.model = new Details('','','','','');
+    this.model = new Details('', '', '', '', '');
   }
 
   //////// NOT SHOWN IN DOCS ////////
@@ -98,7 +167,7 @@ export class WalletCreatorFormComponent {
   //   Name via form.controls = {{showFormControls(heroForm)}}
   showFormControls(form: any) {
     return form && form.controls.name &&
-    form.controls.name.value; // Dr. IQ
+      form.controls.name.value; // Dr. IQ
   }
 
   /////////////////////////////

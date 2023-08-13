@@ -16,71 +16,71 @@ import { SessionState, SessionStore } from './session.store';
  */
 @Injectable({ providedIn: 'root' })
 export class SessionQuery extends Query<SessionState> {
-  wallet: Observable<SessionState['wallet']> = this.select('wallet');
-  pin: Observable<SessionState['pin']> = this.select('pin');
+  // wallet: Observable<SessionState['wallet']> = this.select('wallet');
+  // pin: Observable<SessionState['pin']> = this.select('pin');
 
-  xrplAccountRoot: Observable<SessionState['xrplAccountRoot']> =
-    this.select('xrplAccountRoot');
+  // xrplAccountRoot: Observable<SessionState['xrplAccountRoot']> =
+  //   this.select('xrplAccountRoot');
 
-  xrplTrustlines: Observable<SessionState['xrplTrustlines']> =
-    this.select('xrplTrustlines');
+  // xrplTrustlines: Observable<SessionState['xrplTrustlines']> =
+  //   this.select('xrplTrustlines');
 
   // Wallet field queries:
 
   walletId: Observable<WalletDisplay['wallet_id'] | undefined> = this.select(
     ({ wallet }) => wallet?.wallet_id
   );
-  name: Observable<WalletDisplay['owner_name'] | undefined> = this.select(
-    ({ wallet }) => wallet?.owner_name
-  );
+  // name: Observable<WalletDisplay['owner_name'] | undefined> = this.select(
+  //   ({ wallet }) => wallet?.owner_name
+  // );
 
-  xrplBalances: Observable<AssetAmount[] | undefined> = this.select(
-    ({ xrplBalances }) =>
-      ifDefined(xrplBalances, (balances) =>
-        balances.map(({ value, currency, issuer }): AssetAmount => {
-          const amount = defined(
-            parseNumber(value),
-            `SessionQuery.xrplBalances: bad number: ${value}`
-          );
-          return currency === 'XRP'
-            ? assetAmountXrp(amount)
-            : assetAmountXrplToken(amount, {
-                currency,
-                issuer: defined(
-                  issuer,
-                  `SessionQuery.xrplBalances: unexpected undefined issuer for XRPL token currency ${currency}`
-                ),
-              });
-        })
-      )
-  );
+  // xrplBalances: Observable<AssetAmount[] | undefined> = this.select(
+  //   ({ xrplBalances }) =>
+  //     ifDefined(xrplBalances, (balances) =>
+  //       balances.map(({ value, currency, issuer }): AssetAmount => {
+  //         const amount = defined(
+  //           parseNumber(value),
+  //           `SessionQuery.xrplBalances: bad number: ${value}`
+  //         );
+  //         return currency === 'XRP'
+  //           ? assetAmountXrp(amount)
+  //           : assetAmountXrplToken(amount, {
+  //               currency,
+  //               issuer: defined(
+  //                 issuer,
+  //                 `SessionQuery.xrplBalances: unexpected undefined issuer for XRPL token currency ${currency}`
+  //               ),
+  //             });
+  //       })
+  //     )
+  // );
 
-  allBalances: Observable<AssetAmount[]> = combineLatest([
-    this.xrplBalances,
-  ]).pipe(
-    map(
-      ([xrplBalances]: [
-        AssetAmount[] | undefined
-      ]) => [
-        ...(xrplBalances ?? []),
-      ]
-    ),
-    distinctUntilChanged()
-  );
+  // allBalances: Observable<AssetAmount[]> = combineLatest([
+  //   this.xrplBalances,
+  // ]).pipe(
+  //   map(
+  //     ([xrplBalances]: [
+  //       AssetAmount[] | undefined
+  //     ]) => [
+  //       ...(xrplBalances ?? []),
+  //     ]
+  //   ),
+  //   distinctUntilChanged()
+  // );
 
   constructor(protected override store: SessionStore) {
     super(store);
   }
 
-  // Non-observable accessors:
+  // // Non-observable accessors:
 
-  getXrpBalanceInDrops(): number | undefined {
-    return ifDefined(this.getValue().xrplAccountRoot?.Balance, parseNumber);
-  }
+  // getXrpBalanceInDrops(): number | undefined {
+  //   return ifDefined(this.getValue().xrplAccountRoot?.Balance, parseNumber);
+  // }
 
-  hasXrpBalance() {
-    return 0 < (this.getXrpBalanceInDrops() ?? 0);
-  }
+  // hasXrpBalance() {
+  //   return 0 < (this.getXrpBalanceInDrops() ?? 0);
+  // }
 
   /**
    * Helper: True if the store contains an active user session.
