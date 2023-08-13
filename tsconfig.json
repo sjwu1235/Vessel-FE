@@ -22,7 +22,22 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    // // XXX: Webpack 5 no longer includes these polyfills by default.
+    // "paths": {
+    //   "crypto": [
+    //     "node_modules/crypto-browserify"
+    //   ],
+    //   "http": [
+    //     "node_modules/stream-http"
+    //   ],
+    //   "https": [
+    //     "node_modules/https-browserify"
+    //   ],
+    //   "stream": [
+    //     "node_modules/stream-browserify"
+    //   ]
+    // }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

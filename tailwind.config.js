@@ -11,12 +11,16 @@ module.exports = {
       'dark-gray': '#1e1f21',
       'light-gray': '#b2b2b2',
       'dark-blue': '#003450',
-      'turquoise': '#1F9C95',
+      'light-blue': '#013f61',
+      'turquoise': '#42f595',
     },
     extend: {
       fontFamily: {
-        'ibm': ['IBM Plex Mono', 'sans-serif'],
-        'libre': ['Libre Franklin', 'sans-serif'],
+        primary: "nasalization",
+        audiowide: "Audiowide, cursive",
+      },
+      space: {
+        '5px': '5px',
       }
     },
   },

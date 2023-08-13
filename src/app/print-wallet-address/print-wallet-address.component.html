@@ -1,0 +1,34 @@
+<main class="bg-dark-blue min-h-screen">
+    <section class="max-w-4xl mx-auto bg-dark-blue text-white font-libre p-4">
+        <div *ngIf="sessionQuery.walletId | async as walletId" class="mt-4 grid place-items-center">
+            <!-- <div class="mt-4 grid place-items-center"> -->
+            <qrcode class="bg-dark-blue" [qrdata]="walletId" [width]="400" [errorCorrectionLevel]="'H'"
+                [colorLight]="'#003450'" [colorDark]="'#ffffff'">
+            </qrcode>
+            <!-- <qrcode class="bg-dark-blue" [qrdata]="'QrGPT4v3j5X8p2LzZ0mR'" [width]="400" [errorCorrectionLevel]="'H'"
+                [colorLight]="'#003450'" [colorDark]="'#ffffff'"> -->
+            <!-- </qrcode> -->
+            <h2 class="mb-3 text-3xl">Address</h2>
+            <!-- <p class="text-xl">QrGPT4v3j5X8p2LzZ0mR</p> -->
+            <p class="text-xl">{{walletId}}</p>
+
+            <div class="mt-10 flex gap-x-2">
+                <!-- <button type="button"
+                    class="text-white font-light font-audiowide bg-orange py-2 px-8 rounded-full hover:bg-opacity-80"
+                    (click)="copyAddress('QrGPT4v3j5X8p2LzZ0mR')">
+                    COPY ADDRESS -->
+                <button type="button"
+                    class="text-white font-light font-audiowide bg-orange py-2 px-8 rounded-full hover:bg-opacity-80"
+                    (click)="copyAddress(walletId)"> COPY ADDRESS
+                </button>
+                <button type="back"
+                    class="text-orange font-light font-audiowide bg-dark-blue py-2 px-8 rounded-full outline outline-1 outline-orange hover:bg-light-blue"
+                    (click)="newWallet()">
+                    NEW WALLET
+                </button>
+
+            </div>
+        </div>
+
+    </section>
+</main>
