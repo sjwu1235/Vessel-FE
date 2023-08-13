@@ -21,3 +21,9 @@ body {
     margin: 0;
     font-family: Fira Code;
 }
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 50px #003450 inset;
+    box-shadow: 0 0 0 50px #003450 inset;
+    -webkit-text-fill-color: #ffffff !important;
+}
