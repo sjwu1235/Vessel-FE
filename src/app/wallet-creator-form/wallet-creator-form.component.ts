@@ -92,69 +92,69 @@ export class WalletCreatorFormComponent {
 
 
   async onSubmit() {
-    // let invite_id = '';
 
-    // this.submitted = true;
-    // console.log(this.submitted)
-    /* I'm assuming some validation occurs here*/
+    this.registrationForm.markAllAsTouched();
+    if (this.registrationForm.valid) {
+      // let invite_id = '';
 
-    const firstName = this.model.firstname;
-    const lastName = this.model.lastname;
-    const pin = this.model.pin;
-    const phoneNumber = this.model.number;
+      // this.submitted = true;
+      // console.log(this.submitted)
+      /* I'm assuming some validation occurs here*/
 
-    //hardcode answers
-    const answers = new Map<string, string>();
-    answers.set("hello", "world");
-    //this.walletid = "loading wallet id ...";
-    try {
-      //wallet creation
-      const wallet_id: string = await this.sessionService.createWallet(
-        firstName + ' ' + lastName,
-        pin,
-        answers,
-        phoneNumber
-      );
-      console.log(wallet_id);
-      this.walletid = wallet_id;
-      this.router.navigate(['/display-wallet'])
+      const { firstName, lastName, phoneNumber, pin } = this.registrationForm.value;
+
+      //hardcode answers
+      const answers = new Map<string, string>();
+      answers.set("hello", "world");
+      //this.walletid = "loading wallet id ...";
+      try {
+        //wallet creation
+        const wallet_id: string = await this.sessionService.createWallet(
+          firstName + ' ' + lastName,
+          pin,
+          answers,
+          phoneNumber
+        );
+        console.log(wallet_id);
+        this.walletid = wallet_id;
+        this.router.navigate(['/display-wallet'])
 
 
-      // Autofund the account on creation, later
-      /*const autoFundBool = environment.autofundXrp;
-      if (autoFundBool) {
-        const result = await withLoadingOverlayOpts(
-          this.loadingCtrl,
-          { message: 'Creating Wallet' },
-          () => this.sessionXrplService.sendAutoFunds(wallet_id)
-        ).then(async () => {
-          await withLoadingOverlayOpts(
+        // Autofund the account on creation, later
+        /*const autoFundBool = environment.autofundXrp;
+        if (autoFundBool) {
+          const result = await withLoadingOverlayOpts(
             this.loadingCtrl,
-            { message: 'Redeeming invite code' },
-            async () => {
-              if (environment.enableInvites) {
-                await this.inviteService.redeemInvite(invite_id);
+            { message: 'Creating Wallet' },
+            () => this.sessionXrplService.sendAutoFunds(wallet_id)
+          ).then(async () => {
+            await withLoadingOverlayOpts(
+              this.loadingCtrl,
+              { message: 'Redeeming invite code' },
+              async () => {
+                if (environment.enableInvites) {
+                  await this.inviteService.redeemInvite(invite_id);
+                }
               }
-            }
-          );
-        });
-      }*/
-      //this.router.navigate(['/print-wallet']);
-    } catch (err) {
-      console.log(err)
-      //this is an error notification, need to make component for it, this is is from https://sweetalert2.github.io/
-      /*this.notification.swal.fire({
-        icon: 'error',
-        titleText: 'Wallet Not Created!',
-        text: 'There was a problem creating your wallet, please try again.',
-        confirmButtonText: 'DONE',
-      });*/
+            );
+          });
+        }*/
+        //this.router.navigate(['/print-wallet']);
+      } catch (err) {
+        console.log(err)
+        //this is an error notification, need to make component for it, this is is from https://sweetalert2.github.io/
+        /*this.notification.swal.fire({
+          icon: 'error',
+          titleText: 'Wallet Not Created!',
+          text: 'There was a problem creating your wallet, please try again.',
+          confirmButtonText: 'DONE',
+        });*/
 
-      //this.router.navigate(['/']);
+        //this.router.navigate(['/']);
+      }
+      //this.submitted = false;
+
     }
-    //this.submitted = false;
-
-
   }
 
   newDetails() {
