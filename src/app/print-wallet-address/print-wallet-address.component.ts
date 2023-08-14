@@ -39,8 +39,8 @@ export class PrintWalletAddressComponent implements OnInit {
       });
   }
 
-  newWallet() {
-    this.router.navigate(['/create-wallet'])
-  }
+  // newWallet() {
+  //   this.router.navigate(['/create-wallet'])
+  // }
 
 }
