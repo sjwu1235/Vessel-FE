@@ -17,6 +17,8 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LandingComponent } from './landing/landing.component';
+import { TrustLineCreatorFormComponent } from './trust-line-creator-form/trust-line-creator-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TopBarComponent,
     FooterComponent,
     WalletCreatorFormComponent,
-    PrintWalletAddressComponent
+    PrintWalletAddressComponent,
+    LandingComponent,
+    TrustLineCreatorFormComponent
   ],
   imports: [
     AppRoutingModule,
