@@ -5,6 +5,7 @@ import { IssuedCurrencyAmount } from 'xrpl/dist/npm/models/common';
 import { SessionService } from 'src/app/state/session.service';
 import { SwalHelper } from '../utils/notification/swal-helper';
 import { Router } from '@angular/router';
+import * as xrpl from 'xrpl'
 
 @Component({
   selector: 'app-trust-line-creator-form',
@@ -17,6 +18,7 @@ export class TrustLineCreatorFormComponent {
   address?: string;
   pin?: string;
   clicked = false;
+
   constructor(
     private notification: SwalHelper,
     private sessionService: SessionService,
@@ -30,15 +32,36 @@ export class TrustLineCreatorFormComponent {
     return trimmed === '' ? undefined : trimmed;
   }
 
+  get validAddressType(): AddressType | undefined {
+    return this.validatedAddress
+      ? addressType(this.validatedAddress)
+      : undefined;
+  }
+
   get validatedPin(): string | undefined {
     const trimmed = this.pin?.trim();
     return trimmed === '' ? undefined : trimmed;
   }
 
-  async onPinConfirmed(address?: string, pin?: string): Promise<void> {
-    this.clicked = true;
+  async confirmEntry(): Promise<void> {
+    if (
+      this.validAddressType !== undefined
+    ) {
+      this.onEntryConfirmed(this.address, this.pin)
+    } else {
+      this.notification.swal.fire({
+        icon: 'error',
+        title: 'Input Error',
+        text: 'Please provide a valid address',
+      });
+      this.reset()
+    }
+  }
+
+  async onEntryConfirmed(address?: string, pin?: string): Promise<void> {
     if (address && pin) {
-      const openWalletErrorMessage= await this.sessionService.openWallet(address, pin)
+      this.clicked = true;
+      const openWalletErrorMessage = await this.sessionService.openWallet(address, pin)
       if (openWalletErrorMessage !== undefined) {
         this.notification.swal.fire({
           icon: 'warning',
@@ -47,8 +70,8 @@ export class TrustLineCreatorFormComponent {
         });
         console.log(openWalletErrorMessage)
       } else {
-        await this.optin("XRPL").then((result)=>{
-          if (result!== undefined) {
+        await this.optin("XRPL").then((result) => {
+          if (result !== undefined) {
             this.notification.swal.fire({
               icon: 'error',
               title: 'Trustline Error.',
@@ -64,17 +87,14 @@ export class TrustLineCreatorFormComponent {
           }
         })
       }
-    } else {
-      this.notification.swal.fire({
-        icon: 'error',
-        title: 'Input Error',
-        text: 'Please provide a valid address and pin',
-      });
     }
+    this.reset()
+  }
 
+  reset() {
     this.clicked = false;
-    this.address = ''; // or this.address = '';
-    this.pin = ''; // or this.pin = '';
+    this.address = '';
+    this.pin = '';
   }
 
   async optin(currency: string) {
@@ -98,5 +118,31 @@ export class TrustLineCreatorFormComponent {
       })
   }
 }
+
+type AddressType = 'Algorand' | 'XRPL';
+
+const addressTypes = (address: string): AddressType[] => {
+  const coerce = (t: AddressType[]) => t;
+  return [
+    ...coerce(xrpl.isValidAddress(address) ? ['XRPL'] : []),
+  ];
+};
+
+const addressType = (address: string): AddressType | undefined => {
+  const types = addressTypes(address);
+  switch (types.length) {
+    case 0:
+      return undefined;
+    case 1:
+      return types[0];
+    default:
+      throw Error(
+        `addressType: ${JSON.stringify(
+          types
+        )} has multiple types: ${JSON.stringify(types)}`
+      );
+  }
+};
+
 
 

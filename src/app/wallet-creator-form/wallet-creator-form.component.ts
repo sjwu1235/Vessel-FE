@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Details } from '../details';
 import { SessionService } from '../state/session.service';
@@ -9,28 +9,63 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
-//import { SessionXrplService } from '../state/session-xrpl.service';
-//import { environment } from 'src/environments/environment';
-//import { InviteService } from '../services/invite.service';
+
+interface Country {
+  country: string;
+  code: string;
+  flag: string;
+}
+
 /** @title Form field with error messages */
 @Component({
   selector: 'app-wallet-creator-form',
   templateUrl: './wallet-creator-form.component.html',
   styleUrls: ['./wallet-creator-form.component.css'],
 })
-export class WalletCreatorFormComponent {
+export class WalletCreatorFormComponent implements OnInit {
+
   registrationForm: FormGroup;
   model = new Details('', '', '', '', '');
   walletid = '';
+  countries: Country[] = [];
 
   constructor(
-    //private inviteService: InviteService,
     private formBuilder: FormBuilder,
     private sessionService: SessionService,
     private router: Router,
-    //private sessionXrplService: SessionXrplService,
+    private http: HttpClient,
   ) { this.registrationForm = this.generateFormGroup(); }
+
+  ngOnInit(): void {
+    this.fetchCountries();
+  }
+
+  fetchCountries(): void {
+    this.http.get<Country[]>('assets/countries.json').subscribe(data => {
+      this.countries = data.sort((a, b) => a.country.localeCompare(b.country));
+    }, error => {
+      console.error("There was an error fetching countries data", error);
+    });
+  }
+
+  selectedCountry: any = {
+    country: 'South Africa',
+    code: '+27',
+    flag: '🇿🇦'
+  };
+
+  showDropdown: boolean = false;
+
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
+
+  selectCountry(country: Country) {
+    this.selectedCountry = country;
+    this.showDropdown = false;
+  }
 
   get f() {
     return this.registrationForm.controls;
@@ -59,6 +94,7 @@ export class WalletCreatorFormComponent {
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(10),
+          Validators.pattern("^[0-9]+$")
         ]),
       ],
       confirmPin: [
@@ -72,6 +108,7 @@ export class WalletCreatorFormComponent {
       ],
     });
   }
+
 
   matchValues(
     matchTo: string
@@ -90,7 +127,6 @@ export class WalletCreatorFormComponent {
     this.model = new Details('', '', '', '', '');
   }
 
-
   async onSubmit() {
 
     this.registrationForm.markAllAsTouched();
@@ -101,7 +137,11 @@ export class WalletCreatorFormComponent {
       // console.log(this.submitted)
       /* I'm assuming some validation occurs here*/
 
-      const { firstName, lastName, phoneNumber, pin } = this.registrationForm.value;
+      const phoneNumber = this.registrationForm.value
+        .split(' ')
+        .join('');
+
+      const { firstName, lastName, pin } = this.registrationForm.value;
 
       //hardcode answers
       const answers = new Map<string, string>();
