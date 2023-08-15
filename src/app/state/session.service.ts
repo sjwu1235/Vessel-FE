@@ -14,7 +14,9 @@ import {
   TransactionSigned,
   TransactionToSign,
   GetXrplWallet,
-  GetXrplWalletResult
+  GetXrplWalletResult,
+  OpenWallet,
+  OpenWalletResult,
 } from 'src/schema/actions';
 import { XrplPublicKeyHex } from '../../schema/types';
 
@@ -31,12 +33,12 @@ export class SessionService {
     //private searchService: SearchService,
   ) { }
 
-   /**
-   * Create a new wallet.
-   *
-   * @see EnclaveService#createWallet
-   */
-   async createWallet(
+  /**
+  * Create a new wallet.
+  *
+  * @see EnclaveService#createWallet
+  */
+  async createWallet(
     name: string,
     pin: string,
     auth_map: Map<string, string>,

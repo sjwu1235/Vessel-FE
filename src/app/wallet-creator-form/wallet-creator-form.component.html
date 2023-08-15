@@ -1,4 +1,5 @@
-<main class="bg-dark-blue min-h-screen">
+<body class="bg-dark-blue min-h-screen">
+
   <section class="max-w-4xl mx-auto bg-dark-blue text-white p-4">
     <div class="grid mt-4 place-items-center">
       <div class="text-center space-y-4">
@@ -12,8 +13,7 @@
         <div class="flex flex-col gap-y-1">
           <label for="firstname" class="mt-2 font-audiowide font-thin font-xs indent-1 font-bold text-white">First
             Name</label>
-          <input formControlName="firstName" name="firstName" type="text"
-            class="form-control p-3 text-white bg-dark-blue rounded-full border border-white focus:outline-2 focus:outline-turquoise">
+          <input formControlName="firstName" name="firstName" type="text" class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
         </div>
         <div class="text-sm text-orange" slot="error"
           *ngIf="(f['firstName'].dirty || f['firstName'].touched) && f['firstName'].hasError">
@@ -25,8 +25,7 @@
         <div class="flex flex-col gap-y-1">
           <label for="lastname" class="mt-2 font-audiowide font-thin font-xs indent-1 font-bold text-white">Last
             Name</label>
-          <input formControlName="lastName" name="lastName" type="text"
-            class="form-control p-3 text-white bg-dark-blue rounded-full border border-white focus:outline-2 focus:outline-turquoise">
+          <input formControlName="lastName" name="lastName" type="text" class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
         </div>
         <div class="text-sm text-orange" slot="error"
           *ngIf="(f['lastName'].dirty || f['lastName'].touched) && f['lastName'].hasError">
@@ -37,8 +36,7 @@
         </div>
         <div class="flex flex-col gap-y-1">
           <label for="mobile" class="mt-2 font-audiowide font-thin font-xs indent-1 font-bold text-white">Mobile</label>
-          <input formControlName="mobile" name="mobile" id="phone" type="tel"
-            class="form-control p-3 text-white bg-dark-blue rounded-full border border-white focus:outline-2 focus:outline-turquoise">
+          <input formControlName="mobile" name="mobile" id="phone" type="tel" class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
         </div>
         <div class="text-sm text-orange" slot="error" *ngIf="f['mobile'].touched && f['mobile'].hasError">
           <p *ngIf="f['mobile'].errors?.['required']">Phone is required.</p>
@@ -47,8 +45,7 @@
         </div>
         <div class="flex flex-col gap-y-1">
           <label for="pin" class="mt-2 font-audiowide font-thin font-xs indent-1 font-bold text-white">Pin</label>
-          <input type="password" formControlName="pin" name="pin" minlength="4" maxlength="10"
-            class="form-control p-3 text-white bg-dark-blue rounded-full border border-white focus:outline-2 focus:outline-turquoise">
+          <input type="password" formControlName="pin" name="pin" minlength="4" maxlength="10" class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
         </div>
         <div class="text-sm text-orange" slot="error" *ngIf="(f['pin'].dirty || f['pin'].touched) && f['pin'].hasError">
           <p *ngIf="f['pin'].errors?.['required']">PIN Is Required</p>
@@ -63,7 +60,7 @@
           <label for="password" class="mt-2 font-audiowide font-thin font-xs indent-1 font-bold text-white">Confirm
             Pin</label>
           <input type="password" formControlName="confirmPin" name="confirmPin" minlength="4" maxlength="10"
-            class="form-control p-3 text-white bg-dark-blue rounded-full border border-white focus:outline-2 focus:outline-turquoise">
+            class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
         </div>
         <div class="text-sm text-orange" slot="error"
           *ngIf="(f['confirmPin'].dirty || f['confirmPin'].touched) &&  f['confirmPin'].hasError">
@@ -86,4 +83,4 @@
     </div>
   </section>
 
-</main>
+</body>
