@@ -40,7 +40,9 @@ import { TrustLineCreatorFormComponent } from './trust-line-creator-form/trust-l
     AkitaNgRouterStoreModule,
     ReactiveFormsModule,
     QRCodeModule,
-    ToastrModule.forRoot({ positionClass: 'toast-bottom-center', closeButton: true }),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-center', preventDuplicates: true
+    }),
     BrowserAnimationsModule
   ],
   providers: [],

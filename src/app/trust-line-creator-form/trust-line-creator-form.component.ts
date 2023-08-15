@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SessionXrplService } from 'src/app/state/session-xrpl.service';
 import { SetupQuery } from 'src/app/state/setup';
-import { environment } from 'src/environments/environment';
 import { IssuedCurrencyAmount } from 'xrpl/dist/npm/models/common';
 import { SessionService } from 'src/app/state/session.service';
 import { SwalHelper } from '../utils/notification/swal-helper';
@@ -69,6 +68,9 @@ export class TrustLineCreatorFormComponent {
         text: 'Please provide a valid address and pin',
       });
     }
+
+    this.address = ''; // or this.address = '';
+    this.pin = ''; // or this.pin = '';
   }
 
   async optin(currency: string) {
@@ -92,4 +94,5 @@ export class TrustLineCreatorFormComponent {
       })
   }
 }
+
 

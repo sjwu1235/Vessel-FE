@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'home', component: LandingComponent },
   { path: 'create-wallet', component: WalletCreatorFormComponent },
   { path: 'display-wallet', component: PrintWalletAddressComponent },
-  { path: 'create-trust-line', component: TrustLineCreatorFormComponent },
+  { path: 'opt-in', component: TrustLineCreatorFormComponent },
 ];
 
 @NgModule({
