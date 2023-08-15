@@ -1,45 +1,29 @@
-<main class="bg-dark-blue min-h-screen">
+<body class="bg-dark-blue min-h-screen">
+
     <section class="max-w-4xl mx-auto bg-dark-blue text-white p-4">
         <div class="grid mt-4 place-items-center">
             <div class="text-center space-y-4">
                 <header>
                     <h1 class="text-3xl mt-4 font-primary">Opt In</h1>
                 </header>
-                <!-- <p>Complete the form to create an independant escrow wallet address.
-          </p> -->
             </div>
             <form class="flex flex-col gap-y-2 pt-4 mx-2 sm:mx-4">
                 <div class="flex flex-col gap-y-1">
-                    <label for="lastname"
-                        class="mt-2 font-audiowide font-thin font-xs indent-1 font-bold text-white">Enter Wallet
-                        Address</label>
-                    <input name="lastName" type="text"
-                        class="form-control p-3 text-white bg-dark-blue rounded-full border border-white focus:outline-2 focus:outline-turquoise">
+                    <input [(ngModel)]="address" type="text" id="walletAddress" name="walletAddress"
+                        placeholder="Enter wallet address"
+                        class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
                 </div>
-                <!-- <div class="text-sm text-orange" slot="error">
-                    <p *ngIf="f['lastName'].errors?.['required']">Last Name Is Required</p>
-            <p *ngIf="f['lastName'].errors?.['minlength']">
-              Last Name Must Be At Least 2 Characters
-            </p>
-                </div> -->
                 <div class="flex flex-col gap-y-1">
-                    <label for="mobile"
-                        class="mt-2 font-audiowide font-thin font-xs indent-1 font-bold text-white">Enter Pin</label>
-                    <input name="mobile" id="phone" type="tel"
-                        class="form-control p-3 text-white bg-dark-blue rounded-full border border-white focus:outline-2 focus:outline-turquoise">
+                    <input [(ngModel)]="pin" type="password" id="walletPin" name="walletPin" placeholder="Enter pin"
+                        class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
                 </div>
-                <!-- <div class="text-sm text-orange" slot="error">
-                    <p *ngIf="f['mobile'].errors?.['required']">Phone is required.</p>
-            <p *ngIf="!f['mobile'].errors?.['required'] && f['mobile'].errors?.['pattern']">Phone is not valid.
-            </p>
-                </div> -->
-
                 <div class="flex gap-x-2 mt-4">
                     <button type="submit"
-                        class="text-white font-light font-audiowide bg-orange py-2 px-8 rounded-full hover:bg-opacity-80">CREATE
-                        WALLET</button>
+                        class="w-full text-white font-light font-audiowide bg-orange py-2 px-8 rounded-full hover:bg-opacity-80"
+                        (click)="onPinConfirmed(validatedAddress, validatedPin)">CONFIRM</button>
                 </div>
             </form>
         </div>
     </section>
-</main>
+
+</body>
