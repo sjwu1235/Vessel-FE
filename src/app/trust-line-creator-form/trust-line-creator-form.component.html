@@ -19,8 +19,11 @@
                 </div>
                 <div class="flex gap-x-2">
                     <button type="submit"
-                        class="w-full mt-4 h-12 text-white font-light font-audiowide bg-orange py-2 px-8 rounded-full hover:bg-opacity-80"
+                        class="w-full mt-4 h-12 text-white font-light font-audiowide bg-orange py-2 px-8 rounded-full hover:bg-opacity-80 disabled:bg-light-gray" [disabled]="clicked"
                         (click)="onPinConfirmed(validatedAddress, validatedPin)">CONFIRM</button>
+                </div>
+                <div class="flex justify-center mt-5 font-normal">
+                    <p *ngIf="clicked">Opting in ...</p>
                 </div>
             </form>
         </div>

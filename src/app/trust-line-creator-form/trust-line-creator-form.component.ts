@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SessionXrplService } from 'src/app/state/session-xrpl.service';
 import { SetupQuery } from 'src/app/state/setup';
-import { environment } from 'src/environments/environment';
 import { IssuedCurrencyAmount } from 'xrpl/dist/npm/models/common';
 import { SessionService } from 'src/app/state/session.service';
-import { SwalHelper } from 'src/app/utils/notification/swal-helper';
+import { SwalHelper } from '../utils/notification/swal-helper';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trust-line-creator-form',
@@ -16,10 +16,13 @@ export class TrustLineCreatorFormComponent {
 
   address?: string;
   pin?: string;
-
+  clicked = false;
   constructor(
     private notification: SwalHelper,
     private sessionService: SessionService,
+    private setupQuery: SetupQuery,
+    private sessionXrplService: SessionXrplService,
+    private router: Router
   ) { }
 
   get validatedAddress(): string | undefined {
@@ -33,23 +36,33 @@ export class TrustLineCreatorFormComponent {
   }
 
   async onPinConfirmed(address?: string, pin?: string): Promise<void> {
+    this.clicked = true;
     if (address && pin) {
-
-      const openWalletErrorMessage = await this.sessionService.openWallet(address, pin);
-      console.log(openWalletErrorMessage)
-
+      const openWalletErrorMessage= await this.sessionService.openWallet(address, pin)
       if (openWalletErrorMessage !== undefined) {
         this.notification.swal.fire({
           icon: 'warning',
-          title: 'Something went wrong',
-          text: 'Try again',
+          title: 'Something Went Wrong.',
+          text: openWalletErrorMessage,
         });
+        console.log(openWalletErrorMessage)
       } else {
-        this.notification.swal.fire({
-          icon: 'success',
-          title: 'Success!',
-          text: 'You have opted in',
-        });
+        await this.optin("XRPL").then((result)=>{
+          if (result!== undefined) {
+            this.notification.swal.fire({
+              icon: 'error',
+              title: 'Trustline Error.',
+              text: 'Please try again later.',
+            });
+          }
+          else {
+            this.notification.swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'You have opted in',
+            });
+          }
+        })
       }
     } else {
       this.notification.swal.fire({
@@ -59,8 +72,30 @@ export class TrustLineCreatorFormComponent {
       });
     }
 
+    this.clicked = false;
     this.address = ''; // or this.address = '';
     this.pin = ''; // or this.pin = '';
+  }
+
+  async optin(currency: string) {
+    const issuer = this.setupQuery.tokenIssuer;
+    //const issuer = "abcd";
+    const limitAmount: IssuedCurrencyAmount = {
+      currency,
+      issuer,
+      value: '10000',
+    };
+
+    await this.sessionXrplService
+      .createTrustline(limitAmount, true)
+      .then((result) => {
+        console.log(result);
+        return undefined;
+      })
+      .catch((err) => {
+        console.log(err);
+        return err;
+      })
   }
 }
 

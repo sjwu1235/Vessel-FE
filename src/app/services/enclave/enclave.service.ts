@@ -59,6 +59,7 @@ export class EnclaveService {
   }
 
   async openWallet(request: OpenWallet): Promise<OpenWalletResult> {
+    console.log("starting opening the wallet")
     const walletRequest = { OpenWallet: request };
     const response = await this.postSealedExchange<
       { OpenWallet: OpenWallet },
