@@ -4,6 +4,7 @@ import { SetupQuery } from 'src/app/state/setup';
 import { IssuedCurrencyAmount } from 'xrpl/dist/npm/models/common';
 import { SessionService } from 'src/app/state/session.service';
 import { SwalHelper } from '../utils/notification/swal-helper';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trust-line-creator-form',
@@ -15,12 +16,13 @@ export class TrustLineCreatorFormComponent {
 
   address?: string;
   pin?: string;
-
+  clicked = false;
   constructor(
     private notification: SwalHelper,
     private sessionService: SessionService,
     private setupQuery: SetupQuery,
-    private sessionXrplService: SessionXrplService
+    private sessionXrplService: SessionXrplService,
+    private router: Router
   ) { }
 
   get validatedAddress(): string | undefined {
@@ -34,6 +36,7 @@ export class TrustLineCreatorFormComponent {
   }
 
   async onPinConfirmed(address?: string, pin?: string): Promise<void> {
+    this.clicked = true;
     if (address && pin) {
       const openWalletErrorMessage= await this.sessionService.openWallet(address, pin)
       if (openWalletErrorMessage !== undefined) {
@@ -69,6 +72,7 @@ export class TrustLineCreatorFormComponent {
       });
     }
 
+    this.clicked = false;
     this.address = ''; // or this.address = '';
     this.pin = ''; // or this.pin = '';
   }
