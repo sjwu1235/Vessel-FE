@@ -27,3 +27,20 @@ input:-webkit-autofill {
     box-shadow: 0 0 0 50px #003450 inset;
     -webkit-text-fill-color: #ffffff !important;
 }
+
+.toast-success {
+    padding-left: 80px;
+    text-align: center;
+    background-position: 20% !important;
+    background-color: #42f59696;
+}
+
+.swal2-popup .swal2-styled.swal2-confirm {
+    color: black;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 2px #003450a2 !important;
+}
+
+.swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:hover {
+    background-color: #f1f1f1d3 !important;
+}

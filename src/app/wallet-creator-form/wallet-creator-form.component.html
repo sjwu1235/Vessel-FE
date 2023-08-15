@@ -1,53 +1,61 @@
 <body class="bg-dark-blue min-h-screen">
 
   <section class="max-w-4xl mx-auto bg-dark-blue text-white p-4">
-    <div class="grid mt-4 place-items-center">
-      <div class="text-center space-y-4">
+    <div class="mt-6">
+      <!-- <div class="grid mt-4 place-items-center"> -->
+      <div class="text-center mb-6">
         <header>
-          <h1 class="text-3xl mt-4 font-primary">Create an Escrow Wallet Account</h1>
+          <h1 class="text-3xl font-primary">Create an Escrow Wallet Account</h1>
         </header>
         <!-- <p>Complete the form to create an independant escrow wallet address.
         </p> -->
       </div>
-      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-y-2 pt-4 mx-2 sm:mx-4">
-        <div class="flex flex-col gap-y-1">
-          <label for="firstname" class="mt-2 font-audiowide font-thin font-xs indent-1 font-bold text-white">First
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()"
+        class="w-full sm:w-3/4 md:w-96 l:w-96 xl:w-96 mx-auto flex flex-col">
+        <div class="flex flex-col">
+          <label for="firstname" class="mt-4 mb-1 font-audiowide font-thin font-xs indent-1 font-bold text-white">First
             Name</label>
-          <input formControlName="firstName" name="firstName" type="text" class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
+          <input formControlName="firstName" name="firstName" type="text"
+            class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
         </div>
-        <div class="text-sm text-orange" slot="error"
+        <div class="mt-1 text-sm text-orange" slot="error"
           *ngIf="(f['firstName'].dirty || f['firstName'].touched) && f['firstName'].hasError">
           <p *ngIf="f['firstName'].errors?.['required'] && f['firstName']">First Name Is Required</p>
           <p *ngIf="f['firstName'].errors?.['minlength']">
             First Name Must Be At Least 2 Characters
           </p>
         </div>
-        <div class="flex flex-col gap-y-1">
-          <label for="lastname" class="mt-2 font-audiowide font-thin font-xs indent-1 font-bold text-white">Last
+        <div class="flex flex-col">
+          <label for="lastname" class="mt-4 mb-1 font-audiowide font-thin font-xs indent-1 font-bold text-white">Last
             Name</label>
-          <input formControlName="lastName" name="lastName" type="text" class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
+          <input formControlName="lastName" name="lastName" type="text"
+            class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
         </div>
-        <div class="text-sm text-orange" slot="error"
+        <div class="mt-1 text-sm text-orange" slot="error"
           *ngIf="(f['lastName'].dirty || f['lastName'].touched) && f['lastName'].hasError">
           <p *ngIf="f['lastName'].errors?.['required']">Last Name Is Required</p>
           <p *ngIf="f['lastName'].errors?.['minlength']">
             Last Name Must Be At Least 2 Characters
           </p>
         </div>
-        <div class="flex flex-col gap-y-1">
-          <label for="mobile" class="mt-2 font-audiowide font-thin font-xs indent-1 font-bold text-white">Mobile</label>
-          <input formControlName="mobile" name="mobile" id="phone" type="tel" class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
+        <div class="flex flex-col">
+          <label for="mobile"
+            class="mt-4 mb-1 font-audiowide font-thin font-xs indent-1 font-bold text-white">Mobile</label>
+          <input formControlName="mobile" name="mobile" id="phone" type="tel"
+            class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
         </div>
-        <div class="text-sm text-orange" slot="error" *ngIf="f['mobile'].touched && f['mobile'].hasError">
+        <div class="mt-1 text-sm text-orange" slot="error" *ngIf="f['mobile'].touched && f['mobile'].hasError">
           <p *ngIf="f['mobile'].errors?.['required']">Phone is required.</p>
           <p *ngIf="!f['mobile'].errors?.['required'] && f['mobile'].errors?.['pattern']">Phone is not valid.
           </p>
         </div>
-        <div class="flex flex-col gap-y-1">
-          <label for="pin" class="mt-2 font-audiowide font-thin font-xs indent-1 font-bold text-white">Pin</label>
-          <input type="password" formControlName="pin" name="pin" minlength="4" maxlength="10" class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
+        <div class="flex flex-col">
+          <label for="pin" class="mt-4 mb-1 font-audiowide font-thin font-xs indent-1 font-bold text-white">Pin</label>
+          <input type="password" formControlName="pin" name="pin" minlength="4" maxlength="10"
+            class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
         </div>
-        <div class="text-sm text-orange" slot="error" *ngIf="(f['pin'].dirty || f['pin'].touched) && f['pin'].hasError">
+        <div class="mt-1 text-sm text-orange" slot="error"
+          *ngIf="(f['pin'].dirty || f['pin'].touched) && f['pin'].hasError">
           <p *ngIf="f['pin'].errors?.['required']">PIN Is Required</p>
           <p *ngIf="f['pin'].errors?.['minlength']">
             A Minimum Of 4 Digits Is Required
@@ -56,13 +64,13 @@
             Your PIN Can Only Be Up To 10 Characters
           </p>
         </div>
-        <div class="flex flex-col gap-y-1">
-          <label for="password" class="mt-2 font-audiowide font-thin font-xs indent-1 font-bold text-white">Confirm
+        <div class="flex flex-col">
+          <label for="password" class="mt-4 mb-1 font-audiowide font-thin font-xs indent-1 font-bold text-white">Confirm
             Pin</label>
           <input type="password" formControlName="confirmPin" name="confirmPin" minlength="4" maxlength="10"
             class="w-full p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
         </div>
-        <div class="text-sm text-orange" slot="error"
+        <div class="mt-1 text-sm text-orange" slot="error"
           *ngIf="(f['confirmPin'].dirty || f['confirmPin'].touched) &&  f['confirmPin'].hasError">
           <p *ngIf="f['confirmPin'].errors?.['required']">
             Pin Confirmation is required
@@ -71,12 +79,12 @@
             Pin does not match
           </p>
         </div>
-        <div class="flex gap-x-2 mt-4">
+        <div class="flex gap-x-2 mt-6">
           <button type="submit"
-            class="text-white font-light font-audiowide bg-orange py-2 px-8 rounded-full hover:bg-opacity-80">CREATE
+            class="w-full h-12 text-white font-light font-audiowide bg-orange py-2 px-8 rounded-full hover:bg-opacity-80">CREATE
             WALLET</button>
           <button type="button"
-            class="text-orange font-light font-audiowide bg-dark-blue py-2 px-8 rounded-full outline outline-2 outline-orange hover:bg-light-blue"
+            class="h-12 text-orange font-light font-audiowide bg-dark-blue py-2 px-8 rounded-full outline outline-2 outline-orange hover:bg-light-blue"
             (click)="clearForm()">CLEAR</button>
         </div>
       </form>

@@ -13,11 +13,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "crypto"
+            ],
             "outputPath": "dist/ntls-cbdc-webapp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "zone.js/testing"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [

@@ -5,5 +5,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent {
+  showMobileMenu: boolean = false;
+
+  toggleMenu() {
+    this.showMobileMenu = !this.showMobileMenu;
+  }
 
 }

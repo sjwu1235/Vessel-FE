@@ -4,7 +4,7 @@ import { SetupQuery } from 'src/app/state/setup';
 import { environment } from 'src/environments/environment';
 import { IssuedCurrencyAmount } from 'xrpl/dist/npm/models/common';
 import { SessionService } from 'src/app/state/session.service';
-import { SwalHelper } from 'src/app/utils/notification/swal-helper ';
+import { SwalHelper } from 'src/app/utils/notification/swal-helper';
 
 @Component({
   selector: 'app-trust-line-creator-form',
@@ -35,7 +35,7 @@ export class TrustLineCreatorFormComponent {
   async onPinConfirmed(address?: string, pin?: string): Promise<void> {
     if (address && pin) {
 
-      const openWalletErrorMessage = async () => await this.sessionService.openWallet(address, pin);
+      const openWalletErrorMessage = await this.sessionService.openWallet(address, pin);
       console.log(openWalletErrorMessage)
 
       if (openWalletErrorMessage !== undefined) {
@@ -58,6 +58,10 @@ export class TrustLineCreatorFormComponent {
         text: 'Please provide a valid address and pin',
       });
     }
+
+    this.address = ''; // or this.address = '';
+    this.pin = ''; // or this.pin = '';
   }
 }
+
 
