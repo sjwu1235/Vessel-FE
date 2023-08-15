@@ -23,7 +23,7 @@
       "ES2022",
       "dom"
     ],
-    // XXX: Webpack 5 no longer includes these polyfills by default.
+    // // XXX: Webpack 5 no longer includes these polyfills by default.
     // "paths": {
     //   "crypto": [
     //     "node_modules/crypto-browserify"
