@@ -146,4 +146,41 @@ export class SessionService {
       throw never(signResult);
     }
   }
+
+   // TODO(Pi): Returning a string for failure and undefined for success is surprising; this needs better handling.
+  /**
+   * Open an existing wallet.
+   *
+   * @return An error on failure, or undefined on success
+   *
+   * @see EnclaveService#openWallet
+   */
+  async openWallet(walletId: string, pin: string): Promise<string | undefined> {
+    console.log("making request 1...");
+    console.log(walletId);
+    const request: OpenWallet = { wallet_id: walletId, auth_pin: pin };
+    const result: OpenWalletResult = await this.enclaveService.openWallet(
+      request
+    );
+    console.log("checking request 2...");
+    if ('Opened' in result) {
+      const wallet = result.Opened;
+
+      // XXX: Maintain invariant: clear store before adding new active wallet state.
+      this.sessionStore.reset();
+
+      this.sessionStore.update({ wallet, pin });
+
+      return undefined; // Success
+    } else if ('InvalidAuth' in result) {
+      return 'Authentication failed, please ensure that the address and password provided is correct.';
+    } else if ('Failed' in result) {
+      console.error(result);
+      throw new Error(result.Failed);
+    } else if ('AccountLocked' in result) {
+      return 'You have failed to enter the correct pin 3 times. Please reset your pin in order to access your account.';
+    } else {
+      throw never(result);
+    }
+  }
 }
