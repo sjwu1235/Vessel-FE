@@ -130,17 +130,13 @@ export class WalletCreatorFormComponent implements OnInit {
 
     this.registrationForm.markAllAsTouched();
     if (this.registrationForm.valid) {
-      // let invite_id = '';
 
-      // this.submitted = true;
-      // console.log(this.submitted)
-      /* I'm assuming some validation occurs here*/
 
-      // const phoneNumber = this.registrationForm.value
-      //   .split(' ')
-      //   .join('');
 
-      const { firstName, lastName, phoneNumber, pin } = this.registrationForm.value;
+      const countryCode = this.selectedCountry.code
+      // const phoneNumber = this.registrationForm.value.mobile
+      const { firstName, lastName, mobile, pin } = this.registrationForm.value;
+      let fullPhoneNumber: string = countryCode + mobile.replace(/^0+/, '')
 
       //hardcode answers
       const answers = new Map<string, string>();
@@ -152,46 +148,15 @@ export class WalletCreatorFormComponent implements OnInit {
           firstName + ' ' + lastName,
           pin,
           answers,
-          phoneNumber
+          fullPhoneNumber
         );
         console.log(wallet_id);
         this.walletid = wallet_id;
         this.router.navigate(['/display-wallet'])
 
-
-        // Autofund the account on creation, later
-        /*const autoFundBool = environment.autofundXrp;
-        if (autoFundBool) {
-          const result = await withLoadingOverlayOpts(
-            this.loadingCtrl,
-            { message: 'Creating Wallet' },
-            () => this.sessionXrplService.sendAutoFunds(wallet_id)
-          ).then(async () => {
-            await withLoadingOverlayOpts(
-              this.loadingCtrl,
-              { message: 'Redeeming invite code' },
-              async () => {
-                if (environment.enableInvites) {
-                  await this.inviteService.redeemInvite(invite_id);
-                }
-              }
-            );
-          });
-        }*/
-        //this.router.navigate(['/print-wallet']);
       } catch (err) {
         console.log(err)
-        //this is an error notification, need to make component for it, this is is from https://sweetalert2.github.io/
-        /*this.notification.swal.fire({
-          icon: 'error',
-          titleText: 'Wallet Not Created!',
-          text: 'There was a problem creating your wallet, please try again.',
-          confirmButtonText: 'DONE',
-        });*/
-
-        //this.router.navigate(['/']);
       }
-      //this.submitted = false;
 
     }
   }
