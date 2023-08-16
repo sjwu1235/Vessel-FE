@@ -23,7 +23,7 @@ export class WalletCreatorFormComponent {
   registrationForm: FormGroup;
   model = new Details('', '', '', '', '');
   walletid = '';
-
+  clicked = false;
   constructor(
     //private inviteService: InviteService,
     private formBuilder: FormBuilder,
