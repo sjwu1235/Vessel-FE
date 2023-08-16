@@ -34,53 +34,53 @@ export class SessionQuery extends Query<SessionState> {
     ({ wallet }) => wallet?.owner_name
   );
 
-  xrplBalances: Observable<AssetAmount[] | undefined> = this.select(
-    ({ xrplBalances }) =>
-      ifDefined(xrplBalances, (balances) =>
-        balances.map(({ value, currency, issuer }): AssetAmount => {
-          const amount = defined(
-            parseNumber(value),
-            `SessionQuery.xrplBalances: bad number: ${value}`
-          );
-          return currency === 'XRP'
-            ? assetAmountXrp(amount)
-            : assetAmountXrplToken(amount, {
-                currency,
-                issuer: defined(
-                  issuer,
-                  `SessionQuery.xrplBalances: unexpected undefined issuer for XRPL token currency ${currency}`
-                ),
-              });
-        })
-      )
-  );
+  // xrplBalances: Observable<AssetAmount[] | undefined> = this.select(
+  //   ({ xrplBalances }) =>
+  //     ifDefined(xrplBalances, (balances) =>
+  //       balances.map(({ value, currency, issuer }): AssetAmount => {
+  //         const amount = defined(
+  //           parseNumber(value),
+  //           `SessionQuery.xrplBalances: bad number: ${value}`
+  //         );
+  //         return currency === 'XRP'
+  //           ? assetAmountXrp(amount)
+  //           : assetAmountXrplToken(amount, {
+  //               currency,
+  //               issuer: defined(
+  //                 issuer,
+  //                 `SessionQuery.xrplBalances: unexpected undefined issuer for XRPL token currency ${currency}`
+  //               ),
+  //             });
+  //       })
+  //     )
+  // );
 
-  allBalances: Observable<AssetAmount[]> = combineLatest([
-    this.xrplBalances,
-  ]).pipe(
-    map(
-      ([xrplBalances]: [
-        AssetAmount[] | undefined
-      ]) => [
-        ...(xrplBalances ?? []),
-      ]
-    ),
-    distinctUntilChanged()
-  );
+  // allBalances: Observable<AssetAmount[]> = combineLatest([
+  //   this.xrplBalances,
+  // ]).pipe(
+  //   map(
+  //     ([xrplBalances]: [
+  //       AssetAmount[] | undefined
+  //     ]) => [
+  //       ...(xrplBalances ?? []),
+  //     ]
+  //   ),
+  //   distinctUntilChanged()
+  // );
 
   constructor(protected override store: SessionStore) {
     super(store);
   }
 
-  // Non-observable accessors:
+  // // Non-observable accessors:
 
-  getXrpBalanceInDrops(): number | undefined {
-    return ifDefined(this.getValue().xrplAccountRoot?.Balance, parseNumber);
-  }
+  // getXrpBalanceInDrops(): number | undefined {
+  //   return ifDefined(this.getValue().xrplAccountRoot?.Balance, parseNumber);
+  // }
 
-  hasXrpBalance() {
-    return 0 < (this.getXrpBalanceInDrops() ?? 0);
-  }
+  // hasXrpBalance() {
+  //   return 0 < (this.getXrpBalanceInDrops() ?? 0);
+  // }
 
   /**
    * Helper: True if the store contains an active user session.
