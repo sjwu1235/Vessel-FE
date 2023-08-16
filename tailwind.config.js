@@ -14,6 +14,7 @@ module.exports = {
       'primary-b': '#003450', //dark blue
       'secondary-b': '#013f61', //light blue
       'accent-b': '#42f595', //turqoise
+      'error-t': '#ff642e', //orange
     },
     extend: {
       fontFamily: {

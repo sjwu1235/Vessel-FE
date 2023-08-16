@@ -1,49 +1,54 @@
 <div>
-  <section class="max-w-4xl mx-auto bg-primary-b text-primary-t p-4">
+  <section class="max-w-4xl mx-auto bg-primary-b text-primary-t px-4">
     <div class="mt-6">
-      <div class="text-center mb-6">
+      <div class="text-center mb-3">
         <header>
           <h1 class="text-3xl font-primary">Create an Escrow Wallet Account</h1>
         </header>
       </div>
       <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()"
-        class="w-full sm:w-3/4 md:w-96 l:w-96 xl:w-96 mx-auto flex flex-col">
+        class="w-full sm:w-3/4 md:w-100 l:w-104 xl:w-108 mx-auto flex flex-col">
         <!-- First name field -->
         <div class="flex flex-col">
-          <label for="firstname" class="mt-4 mb-1 font-audiowide font-thin font-xs indent-1 text-primary-t">First
+          <label for="firstname" class="mt-2 mb-1 font-audiowide font-thin font-xs indent-1 text-primary-t">First
             Name</label>
           <!-- First name input -->
           <input formControlName="firstName" name="firstName" type="text"
             class="w-full p-3 bg-primary-b text-primary-t rounded-full border border-primary-t focus: outline-none focus:border-accent-b">
         </div>
         <!-- Validate first name -->
-        <div class="mt-1 text-sm text-primary-a" slot="error"
-          *ngIf="(f['firstName'].dirty || f['firstName'].touched) && f['firstName'].hasError">
-          <p *ngIf="f['firstName'].errors?.['required'] && f['firstName']">First Name Is Required</p>
-          <p *ngIf="f['firstName'].errors?.['minlength']">
-            First Name Must Be At Least 2 Characters
-          </p>
+        <div class="h-4 mt-1.5 mb-0.5 pl-0.5">
+          <div class="text-xs text-error-t" slot="error" *ngIf="(f['firstName'].dirty || f['firstName'].touched) && f['firstName'].hasError">
+            <p *ngIf="f['firstName'].errors?.['required'] && f['firstName']">
+              First Name Is Required
+            </p>
+            <p *ngIf="f['firstName'].errors?.['minlength']">
+              First Name Must Be At Least 2 Characters
+            </p>
+          </div>
         </div>
         <!-- Last name field -->
         <div class="flex flex-col">
-          <label for="lastname" class="mt-4 mb-1 font-audiowide font-thin font-xs indent-1 text-primary-t">Last
+          <label for="lastname" class="mb-1 font-audiowide font-thin font-xs indent-1 text-primary-t">Last
             Name</label>
           <!-- Last name input -->
           <input formControlName="lastName" name="lastName" type="text"
             class="w-full p-3 bg-primary-b text-primary-t rounded-full border border-primary-t focus: outline-none focus:border-accent-b">
         </div>
         <!-- Validate last name -->
-        <div class="mt-1 text-sm text-primary-a" slot="error"
+        <div class="h-4 mt-1.5 mb-0.5 pl-0.5">
+          <div class="text-xs text-error-t" slot="error"
           *ngIf="(f['lastName'].dirty || f['lastName'].touched) && f['lastName'].hasError">
           <p *ngIf="f['lastName'].errors?.['required']">Last Name Is Required</p>
           <p *ngIf="f['lastName'].errors?.['minlength']">
             Last Name Must Be At Least 2 Characters
           </p>
+          </div>
         </div>
         <!-- Mobile number field -->
         <div class="flex flex-col">
           <label for="mobile"
-            class="mt-4 mb-1 font-audiowide font-thin font-xs indent-1 text-primary-t">Mobile</label>
+            class="mb-1 font-audiowide font-thin font-xs indent-1 text-primary-t">Mobile</label>
           <div class="flex items-center bg-primary-b rounded-full border border-primary-t focus-within:border-accent-b">
             <!-- Custom dropdown UI -->
             <div class="relative w-18"> <!-- Adjusted width for dial code entry -->
@@ -70,52 +75,58 @@
           </div>
         </div>
         <!-- Validate mobile number -->
-        <div class="mt-1 text-sm text-primary-a" slot="error" *ngIf="f['mobile'].touched && f['mobile'].hasError">
-          <p *ngIf="f['mobile'].errors?.['required']">Phone is required.</p>
-          <p *ngIf="!f['mobile'].errors?.['required'] && f['mobile'].errors?.['pattern']">Phone is not valid.
-          </p>
+        <div class="h-4 mt-1.5 mb-0.5 pl-0.5">
+          <div class="text-xs text-error-t" slot="error" *ngIf="f['mobile'].touched && f['mobile'].hasError">
+            <p *ngIf="f['mobile'].errors?.['required']">Phone number is required.</p>
+            <p *ngIf="!f['mobile'].errors?.['required'] && f['mobile'].errors?.['pattern']">Phone number is not valid.
+            </p>
+          </div>
         </div>
         <!-- Pin field -->
         <div class="flex flex-col">
-          <label for="pin" class="mt-4 mb-1 font-audiowide font-thin font-xs indent-1 text-primary-t">Pin</label>
+          <label for="pin" class="mb-1 font-audiowide font-thin font-xs indent-1 text-primary-t">Pin</label>
           <!-- Pin input -->
           <input type="password" formControlName="pin" name="pin" minlength="4" maxlength="10"
             class="w-full p-3 bg-primary-b text-primary-t rounded-full border border-primary-t focus:outline-none focus:border-accent-b">
         </div>
         <!-- Validate pin -->
-        <div class="mt-1 text-sm text-primary-a" slot="error"
-          *ngIf="(f['pin'].dirty || f['pin'].touched) && f['pin'].hasError">
-          <p *ngIf="f['pin'].errors?.['required']">PIN Is Required</p>
-          <p *ngIf="f['pin'].errors?.['minlength']">
-            A Minimum Of 4 Digits Is Required
-          </p>
-          <p *ngIf="f['pin'].errors?.['maxlength']">
-            Your PIN Can Only Be Up To 10 Characters
-          </p>
-          <p *ngIf="f['pin'].errors?.['pattern']">
-            Your PIN Can Only Contain Numeric Values
-          </p>
+        <div class="h-4 mt-1.5 mb-0.5 pl-0.5 max-h-fit">
+          <div class="text-xs text-error-t" slot="error"
+            *ngIf="(f['pin'].dirty || f['pin'].touched) && f['pin'].hasError">
+            <p *ngIf="f['pin'].errors?.['required']">PIN Is Required.</p>
+            <span *ngIf="f['pin'].errors?.['minlength']">
+              A Minimum Of 4 Digits Is Required.
+            </span>
+            <span *ngIf="f['pin'].errors?.['maxlength']">
+              Your PIN Can Only Be Up To 10 Characters.
+            </span>
+            <span *ngIf="f['pin'].errors?.['pattern']">
+              Numeric Values Only.
+            </span>
+          </div>
         </div>
         <!-- Confirm pin field -->
         <div class="flex flex-col">
-          <label for="password" class="mt-4 mb-1 font-audiowide font-thin font-xs indent-1 text-primary-t">Confirm
+          <label for="password" class="mb-1 font-audiowide font-thin font-xs indent-1 text-primary-t">Confirm
             Pin</label>
           <!-- Confirm pin input -->
           <input type="password" formControlName="confirmPin" name="confirmPin" minlength="4" maxlength="10"
             class="w-full p-3 bg-primary-b text-primary-t rounded-full border border-primary-t focus:outline-none focus:border-accent-b">
         </div>
         <!-- Validate confirm pin -->
-        <div class="mt-1 text-sm text-primary-a" slot="error"
+        <div class="h-4 mt-1.5 mb-0.5 pl-0.5">
+          <div class="text-xs text-error-t" slot="error"
           *ngIf="(f['confirmPin'].dirty || f['confirmPin'].touched) &&  f['confirmPin'].hasError">
           <p *ngIf="f['confirmPin'].errors?.['required']">
-            Pin Confirmation is required
+            Pin Confirmation is Required.
           </p>
           <p *ngIf="!f['confirmPin'].errors?.['required'] && f['confirmPin'].errors?.['mismatch']">
-            Pin does not match
+            Pin Does Not Match.
           </p>
         </div>
+        </div>
         <!-- Button -->
-        <div class="flex gap-x-2 mt-6">
+        <div class="flex gap-x-2 mt-1.5 mb-6">
           <button type="submit"
             class="flex justify-center items-center w-full h-14 md:h-12 text-primary-t font-light font-audiowide bg-primary-a py-2 px-8 rounded-full hover:bg-opacity-80"
             (click)="onSubmit()">CREATE
