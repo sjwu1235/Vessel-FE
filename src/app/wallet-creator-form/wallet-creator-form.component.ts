@@ -109,7 +109,6 @@ export class WalletCreatorFormComponent implements OnInit {
     });
   }
 
-
   matchValues(
     matchTo: string
   ): (arg0: AbstractControl) => ValidationErrors | null {
@@ -137,11 +136,11 @@ export class WalletCreatorFormComponent implements OnInit {
       // console.log(this.submitted)
       /* I'm assuming some validation occurs here*/
 
-      const phoneNumber = this.registrationForm.value
-        .split(' ')
-        .join('');
+      // const phoneNumber = this.registrationForm.value
+      //   .split(' ')
+      //   .join('');
 
-      const { firstName, lastName, pin } = this.registrationForm.value;
+      const { firstName, lastName, phoneNumber, pin } = this.registrationForm.value;
 
       //hardcode answers
       const answers = new Map<string, string>();
