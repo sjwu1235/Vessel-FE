@@ -30,7 +30,6 @@ export class WalletCreatorFormComponent implements OnInit {
   model = new Details('', '', '', '', '');
   walletid = '';
   countries: Country[] = [];
-
   constructor(
     private formBuilder: FormBuilder,
     private sessionService: SessionService,

@@ -84,6 +84,7 @@ export class TrustLineCreatorFormComponent {
               title: 'Success!',
               text: 'You have opted in',
             });
+            this.router.navigate(['/home']);
           }
         })
       }

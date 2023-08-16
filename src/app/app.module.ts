@@ -19,7 +19,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingComponent } from './landing/landing.component';
 import { TrustLineCreatorFormComponent } from './trust-line-creator-form/trust-line-creator-form.component';
-import { LearnMoreComponent } from './learn-more/learn-more.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { LearnMoreComponent } from './learn-more/learn-more.component';
     WalletCreatorFormComponent,
     PrintWalletAddressComponent,
     LandingComponent,
-    TrustLineCreatorFormComponent,
-    LearnMoreComponent
+    TrustLineCreatorFormComponent
   ],
   imports: [
     AppRoutingModule,
