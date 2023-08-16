@@ -70,7 +70,7 @@ export class TrustLineCreatorFormComponent {
         });
         console.log(openWalletErrorMessage)
       } else {
-        await this.optin("XRPL").then((result) => {
+        await this.optin("FOO").then((result) => {
           if (result !== undefined) {
             this.notification.swal.fire({
               icon: 'error',
@@ -100,7 +100,6 @@ export class TrustLineCreatorFormComponent {
 
   async optin(currency: string) {
     const issuer = this.setupQuery.tokenIssuer;
-    //const issuer = "abcd";
     const limitAmount: IssuedCurrencyAmount = {
       currency,
       issuer,
