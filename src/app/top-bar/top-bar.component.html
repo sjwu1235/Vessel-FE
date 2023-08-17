@@ -9,7 +9,8 @@
         </div>
         <div>
             <button id="hamburger-button" class="text-3xl md:hidden focus:outline-none" (click)="toggleMenu()">
-                &#9776;
+                <span *ngIf="!showMobileMenu">&#9776;</span>
+                <span *ngIf="showMobileMenu">&#10006;</span>
             </button>
         </div>
         <nav class="hidden md:block space-x-4 text-s font-normal pt-1" aria-label="main">
