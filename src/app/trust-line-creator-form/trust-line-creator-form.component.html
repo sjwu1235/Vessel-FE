@@ -1,32 +1,28 @@
-<body class="bg-dark-blue min-h-screen">
-
-    <section class="max-w-4xl mx-auto bg-dark-blue text-white p-4">
-        <div class="mt-6">
-            <div class="text-center mb-6">
-                <header>
-                    <h1 class="text-3xl font-primary">Opt In</h1>
-                </header>
-            </div>
-            <form class="w-full sm:w-3/4 md:w-96 l:w-96 xl:w-96 mx-auto flex flex-col">
-                <div class="flex flex-col gap-y-1">
-                    <input [(ngModel)]="address" type="text" id="walletAddress" name="walletAddress"
-                        placeholder="Enter wallet address"
-                        class="w-full mt-4 p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
-                </div>
-                <div class="flex flex-col gap-y-1">
-                    <input [(ngModel)]="pin" type="password" id="walletPin" name="walletPin" placeholder="Enter pin"
-                        class="w-full mt-4 p-3 bg-dark-blue text-white rounded-full border border-white focus: outline-none focus:border-turquoise">
-                </div>
-                <div class="flex gap-x-2">
-                    <button type="submit"
-                        class="w-full mt-4 h-12 text-white font-light font-audiowide bg-orange py-2 px-8 rounded-full hover:bg-opacity-80 disabled:bg-light-gray"
-                        [disabled]="!validatedAddress || !validatedPin || clicked" (click)="confirmEntry()">CONFIRM</button>
-                </div>
-                <div class="flex justify-center mt-5 font-normal">
-                    <p *ngIf="clicked">Opting in...</p>
-                </div>
-            </form>
+<section class="max-w-4xl mx-auto text-primary-t p-4">
+    <div class="mt-6">
+        <div class="text-center mb-6">
+            <header>
+                <h1 class="xs:text-3xl text-2xl font-primary">Opt In</h1>
+            </header>
         </div>
-    </section>
-
-</body>
+        <form class="w-full sm:w-3/4 md:w-96 l:w-100 xl:w-104 mx-auto flex flex-col">
+            <div class="flex flex-col gap-y-1">
+                <input [(ngModel)]="address" type="text" id="walletAddress" name="walletAddress"
+                    placeholder="Enter wallet address"
+                    class="w-full mt-4 p-3 text-primary-t bg-primary-b  rounded-full border border-primary-t focus: outline-none focus:border-accent-b">
+            </div>
+            <div class="flex flex-col gap-y-1">
+                <input [(ngModel)]="pin" type="password" id="walletPin" name="walletPin" placeholder="Enter pin"
+                    class="w-full mt-4 p-3 text-primary-t bg-primary-b rounded-full border border-white focus: outline-none focus:border-accent-b">
+            </div>
+            <div class="flex gap-x-2">
+                <button type="submit"
+                    class="w-full mt-4 h-12 text-primary-t font-light font-audiowide bg-primary-a py-2 px-8 rounded-full hover:bg-opacity-80 disabled:bg-secondary-lg"
+                    [disabled]="!validatedAddress || !validatedPin || clicked" (click)="confirmEntry()">CONFIRM</button>
+            </div>
+            <div class="flex justify-center mt-5 font-normal">
+                <p *ngIf="clicked">Opting in...</p>
+            </div>
+        </form>
+    </div>
+</section>

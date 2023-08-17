@@ -1,19 +1,26 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   // darkMode: 'media',
   content: [
     "./src/**/*.{html,ts}",
   ],
   theme: {
+      screens: {
+        'xs': '475px',
+        ...defaultTheme.screens,
+      },
     colors: {
-      'orange': '#ff642e',
-      'white': '#ffffff',
-      'black': '#000000',
-      'dark-gray': '#1e1f21',
-      'light-gray': '#b2b2b2',
-      'dark-blue': '#003450',
-      'light-blue': '#013f61',
-      'turquoise': '#42f595',
+      'primary-a': '#ff642e', //orange
+      'primary-t': '#ffffff', //white
+      'primary-c': '#000000', //black
+      'secondary-dg': '#1e1f21', //dark gray
+      'secondary-lg': '#b2b2b2', //light gray
+      'primary-b': '#003450', //dark blue
+      'secondary-b': '#013f61', //light blue
+      'accent-b': '#42f595', //turqoise
+      'error-t': '#ff642e', //orange
     },
     extend: {
       fontFamily: {
@@ -22,6 +29,13 @@ module.exports = {
       },
       space: {
         '5px': '5px',
+      },
+      width: {
+        '100': '25rem',
+        '104': '26rem',
+        '108': '27rem',
+        '112': '28rem',
+        '128': '32rem'
       }
     },
   },
