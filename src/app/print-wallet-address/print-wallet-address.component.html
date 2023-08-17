@@ -1,31 +1,37 @@
-<section class="max-w-4xl mx-auto text-primary-t font-libre p-4">
-    <div *ngIf="sessionQuery.walletId | async as walletId" class="mt-4 grid place-items-center">
-        <!-- <div class="mt-4 grid place-items-center"> -->
-        <qrcode class="bg-primary-b" [qrdata]="walletId" [width]="400" [errorCorrectionLevel]="'H'"
+<section class="max-w-4xl mx-auto text-primary-t font-libre pt-0 px-4 pb-4">
+    <div *ngIf="sessionQuery.walletId | async as walletId" class="mt-0 flex flex-col items-center">
+    <!-- <div class="mt-0 flex flex-col items-center"> -->
+        <qrcode class="bg-primary-b flex flex-col items-center xs:hidden" [qrdata]="walletId" [width]="400" [errorCorrectionLevel]="'H'"
+            [colorLight]="'#003450'" [colorDark]="'#ffffff'">
+        </qrcode> 
+        <qrcode class="bg-primary-b hidden items-center xs:flex xs:flex-col" [qrdata]="walletId" [width]="400" [errorCorrectionLevel]="'H'"
+            [colorLight]="'#003450'" [colorDark]="'#ffffff'">
+        </qrcode> 
+        <!-- <qrcode class="bg-primary-b flex flex-col items-center xs:hidden" [qrdata]="'QrGPT4v3j5X8p2LzZ0mR'" [width]="300" [errorCorrectionLevel]="'H'"
             [colorLight]="'#003450'" [colorDark]="'#ffffff'">
         </qrcode>
-        <!-- <qrcode class="bg-primary-b" [qrdata]="'QrGPT4v3j5X8p2LzZ0mR'" [width]="400" [errorCorrectionLevel]="'H'"
+        <qrcode class="bg-primary-b hidden items-center xs:flex xs:flex-col" [qrdata]="'QrGPT4v3j5X8p2LzZ0mR'" [width]="400" [errorCorrectionLevel]="'H'"
             [colorLight]="'#003450'" [colorDark]="'#ffffff'">
         </qrcode> -->
         <header>
-            <h2 class="mb-3 text-3xl">Address</h2>
+            <h2 class="mb-3 text-2xl">Address</h2>
         </header>
 
         <!-- <div class="flex items-center gap-x-4">
-            <p class="text-xl">QrGPT4v3j5X8p2LzZ0mR</p>
+            <p class="text-lg break-all">QrGPT4v3j5X8p2LzZ0mR'</p>
             <img src="./assets/img/copy_icon_outline.svg" alt="Copy Address" title="Copy Address"
-                (click)="copyAddress('QrGPT4v3j5X8p2LzZ0mR')" class="w-5 h-5 cursor-pointer">
+                (click)="copyAddress('QrGPT4v3j5X8p2LzZ0mR'')" class="w-5 h-5 cursor-pointer">
         </div> -->
 
         <div class="flex items-center gap-x-4">
-            <p class="text-xl">{{walletId}}</p>
+            <p class="text-lg break-all">{{walletId}}</p>
             <img src="./assets/img/copy_icon_outline.svg" alt="Copy Address" title="Copy Address"
                 (click)="copyAddress(walletId)" class="w-5 h-5 cursor-pointer">
         </div>
 
-        <div class="mt-10 flex gap-x-2">
+        <div class="mt-10 flex flex-col gap-y-3 sm:flex sm:flex-row sm:gap-x-2">
             <button type="button" routerLink="/opt-in"
-                class="w-56 h-12 text-primary-t font-light font-audiowide bg-primary-a py-2 px-8 rounded-full hover:bg-opacity-80">
+                class="w-64 sm:w-56 h-12 text-primary-t font-light font-audiowide bg-primary-a py-2 px-8 rounded-full hover:bg-opacity-80">
                 OPT IN
             </button>
             <!-- <button type="button"
@@ -33,7 +39,7 @@
                 (click)="copyAddress(walletId)"> OPT IN
             </button> -->
             <button type="button" routerLink="/create-wallet"
-                class="w-56 h-12 text-primary-a font-light font-audiowide bg-primary-b py-2 px-8 rounded-full outline outline-1 outline-primary-a hover:bg-secondary-b">
+                class="w-64 sm:w-56 h-12 text-primary-a font-light font-audiowide bg-primary-b py-2 px-8 rounded-full outline outline-1 outline-primary-a hover:bg-secondary-b">
                 NEW WALLET
             </button>
         </div>

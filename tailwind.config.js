@@ -1,10 +1,16 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   // darkMode: 'media',
   content: [
     "./src/**/*.{html,ts}",
   ],
   theme: {
+      screens: {
+        'xs': '475px',
+        ...defaultTheme.screens,
+      },
     colors: {
       'primary-a': '#ff642e', //orange
       'primary-t': '#ffffff', //white
@@ -23,6 +29,13 @@ module.exports = {
       },
       space: {
         '5px': '5px',
+      },
+      width: {
+        '100': '25rem',
+        '104': '26rem',
+        '108': '27rem',
+        '112': '28rem',
+        '128': '32rem'
       }
     },
   },
