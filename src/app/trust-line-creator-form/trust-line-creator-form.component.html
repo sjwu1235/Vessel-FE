@@ -6,14 +6,14 @@
             </header>
         </div>
         <form class="w-full sm:w-3/4 md:w-96 l:w-100 xl:w-104 mx-auto flex flex-col">
-            <div class="flex flex-col gap-y-1">
+            <div class="flex flex-col gap-y-1 bg">
                 <input [(ngModel)]="address" type="text" id="walletAddress" name="walletAddress"
                     placeholder="Enter wallet address"
-                    class="w-full mt-4 p-3 text-primary-t bg-primary-b  rounded-full border border-primary-t focus: outline-none focus:border-accent-b">
+                    class="w-full mt-4 p-3 text-primary-t bg-primary-b bg-opacity-0 rounded-full border border-primary-t focus: outline-none focus:border-accent-b hover:bg-primary-t hover:bg-opacity-10 focus:bg-primary-t focus:bg-opacity-10">
             </div>
             <div class="flex flex-col gap-y-1">
                 <input [(ngModel)]="pin" type="password" id="walletPin" name="walletPin" placeholder="Enter pin"
-                    class="w-full mt-4 p-3 text-primary-t bg-primary-b rounded-full border border-white focus: outline-none focus:border-accent-b">
+                    class="w-full mt-4 p-3 text-primary-t bg-primary-b bg-opacity-0 rounded-full border border-white focus: outline-none focus:border-accent-b hover:bg-primary-t hover:bg-opacity-10 focus:bg-primary-t focus:bg-opacity-10">
             </div>
             <div class="flex gap-x-2">
                 <button type="submit"

@@ -5,6 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Montserrat+Alternates:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import 'node_modules/ngx-toastr/toastr.css';
 
 @font-face {
@@ -12,18 +13,31 @@
     src: url("assets/fonts/nasalization.otf") format("opentype");
 }
 
+
+
 html{
     height: 100%;
 }
 
 body {
     font-family: Fira Code;
+    /* background-image: url("https://www.transparenttextures.com/patterns/arabesque.png"); */
+    
+    background-color: #1A1632;
+    background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
+    /* background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); */
+    /* background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png"); */
+
 }
 
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 50px #003450 inset;
-    box-shadow: 0 0 0 50px #003450 inset;
-    -webkit-text-fill-color: #ffffff !important;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background-color: transparent !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
 }
 
 .toast-success {
@@ -36,7 +50,7 @@ input:-webkit-autofill {
 .swal2-popup .swal2-styled.swal2-confirm {
     color: black;
     background-color: #ffffff !important;
-    box-shadow: 0 0 0 2px #003450a2 !important;
+    @apply shadow-inner-sm;
 }
 
 .swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:hover {

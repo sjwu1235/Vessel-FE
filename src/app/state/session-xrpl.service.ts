@@ -264,7 +264,8 @@ export class SessionXrplService {
     flags?: number | xrpl.TrustSetFlagsInterface
   ): Promise<xrpl.TxResponse> {
     const { wallet } = this.sessionQuery.assumeActiveSession();
-
+    console.log(this.sessionQuery.pin);
+    console.log(this.sessionQuery.walletId);
     const preparedTx: xrpl.TrustSet = await withLoggedExchange(
       'SessionXrplService.sendTrustSetTx: XrplService.createUnsignedTrustSetTx:',
       async () =>
