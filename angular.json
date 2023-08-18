@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ntls-cbdc-webapp": {
+    "cbdc-webapp": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -16,7 +16,7 @@
             "allowedCommonJsDependencies": [
               "crypto"
             ],
-            "outputPath": "dist/ntls-cbdc-webapp",
+            "outputPath": "dist/cbdc-webapp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js",
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ntls-cbdc-webapp:build:production"
+              "browserTarget": "cbdc-webapp:build:production"
             },
             "development": {
-              "browserTarget": "ntls-cbdc-webapp:build:development"
+              "browserTarget": "cbdc-webapp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ntls-cbdc-webapp:build"
+            "browserTarget": "cbdc-webapp:build"
           }
         },
         "test": {
