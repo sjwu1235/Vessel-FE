@@ -13,21 +13,14 @@
     src: url("assets/fonts/nasalization.otf") format("opentype");
 }
 
-
-
 html{
     height: 100%;
 }
 
 body {
     font-family: Fira Code;
-    /* background-image: url("https://www.transparenttextures.com/patterns/arabesque.png"); */
-    
     background-color: #1A1632;
     background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
-    /* background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); */
-    /* background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png"); */
-
 }
 
 input:-webkit-autofill,
