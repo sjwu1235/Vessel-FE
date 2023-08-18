@@ -16,23 +16,23 @@ import { SessionState, SessionStore } from './session.store';
  */
 @Injectable({ providedIn: 'root' })
 export class SessionQuery extends Query<SessionState> {
-  // wallet: Observable<SessionState['wallet']> = this.select('wallet');
-  // pin: Observable<SessionState['pin']> = this.select('pin');
+  wallet: Observable<SessionState['wallet']> = this.select('wallet');
+  pin: Observable<SessionState['pin']> = this.select('pin');
 
-  // xrplAccountRoot: Observable<SessionState['xrplAccountRoot']> =
-  //   this.select('xrplAccountRoot');
+  xrplAccountRoot: Observable<SessionState['xrplAccountRoot']> =
+    this.select('xrplAccountRoot');
 
-  // xrplTrustlines: Observable<SessionState['xrplTrustlines']> =
-  //   this.select('xrplTrustlines');
+  xrplTrustlines: Observable<SessionState['xrplTrustlines']> =
+    this.select('xrplTrustlines');
 
   // Wallet field queries:
 
   walletId: Observable<WalletDisplay['wallet_id'] | undefined> = this.select(
     ({ wallet }) => wallet?.wallet_id
   );
-  // name: Observable<WalletDisplay['owner_name'] | undefined> = this.select(
-  //   ({ wallet }) => wallet?.owner_name
-  // );
+  name: Observable<WalletDisplay['owner_name'] | undefined> = this.select(
+    ({ wallet }) => wallet?.owner_name
+  );
 
   // xrplBalances: Observable<AssetAmount[] | undefined> = this.select(
   //   ({ xrplBalances }) =>

@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Clipboard } from '@capacitor/clipboard';
 import { SessionQuery } from 'src/app/state/session.query';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -14,12 +13,11 @@ export class PrintWalletAddressComponent implements OnInit {
 
   @ViewChild('printSection', { static: false, read: ElementRef })
   printSection: ElementRef | undefined;
-  // Hook for testing
+
   public Clipboard = Clipboard;
 
   constructor(
     public sessionQuery: SessionQuery,
-    private router: Router,
     private toastr: ToastrService
 
   ) { }
@@ -28,7 +26,6 @@ export class PrintWalletAddressComponent implements OnInit {
 
   async copyAddress(address: string) {
     await this.Clipboard.write({
-      // eslint-disable-next-line id-blacklist
       string: address,
     })
       .then(() => {
@@ -37,10 +34,6 @@ export class PrintWalletAddressComponent implements OnInit {
       .catch(() => {
         this.toastr.error('Something weird happened, please try again!');
       });
-  }
-
-  newWallet() {
-    this.router.navigate(['/create-wallet'])
   }
 
 }
