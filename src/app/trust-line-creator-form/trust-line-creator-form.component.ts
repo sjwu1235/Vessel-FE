@@ -70,23 +70,25 @@ export class TrustLineCreatorFormComponent {
         });
         console.log(openWalletErrorMessage)
       } else {
-        await this.optin("FOO").then((result) => {
-          if (result !== undefined) {
-            this.notification.swal.fire({
-              icon: 'error',
-              title: 'Trustline Error.',
-              text: 'Please try again later.',
-            });
+        console.log("trying to opt in...")
+        const optinErrorMessage = await this.optin("Foo");
+        console.log(optinErrorMessage);
+        console.log("end");
+        if (optinErrorMessage != undefined) {
+          this.notification.swal.fire({
+            icon: 'error',
+            title: 'Trustline Error.',
+            text: optinErrorMessage,
+          });
           }
-          else {
-            this.notification.swal.fire({
-              icon: 'success',
-              title: 'Success!',
-              text: 'You have opted in',
-            });
-            this.router.navigate(['/home']);
-          }
-        })
+        else {
+          this.notification.swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'You have opted in',
+          });
+          this.router.navigate(['/home']);
+        }
       }
     }
     this.reset()
@@ -97,25 +99,29 @@ export class TrustLineCreatorFormComponent {
     this.address = '';
     this.pin = '';
   }
-
-  async optin(currency: string) {
+/*
+todo: proper error handling for RippledError
+*/
+  async optin(currency: string): Promise<string | undefined> {
     const issuer = this.setupQuery.tokenIssuer;
     const limitAmount: IssuedCurrencyAmount = {
       currency,
       issuer,
       value: '10000',
     };
-
-    await this.sessionXrplService
-      .createTrustline(limitAmount, true)
-      .then((result) => {
-        console.log(result);
-        return undefined;
-      })
-      .catch((err) => {
-        console.log(err);
-        return err;
-      })
+    try {
+      const optinResult= await this.sessionXrplService.createTrustline(limitAmount, true);
+      return undefined;
+    }catch(error){
+      console.log('logging an error');
+      const x:string= " "+error;
+      console.log(x)
+      if (x.includes("Account not found")) {
+        return 'Account not found error. You may need to fund this account first.';
+      }
+      return 'Service unavailable. Please try again in 5 minutes';
+      
+    }
   }
 }
 

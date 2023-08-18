@@ -13,18 +13,31 @@
     src: url("assets/fonts/nasalization.otf") format("opentype");
 }
 
+
+
 html{
     height: 100%;
 }
 
 body {
     font-family: Fira Code;
+    /* background-image: url("https://www.transparenttextures.com/patterns/arabesque.png"); */
+    
+    background-color: #1A1632;
+    background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
+    /* background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); */
+    /* background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png"); */
+
 }
 
-input:-webkit-autofill {
-    @apply shadow-inner-xl;
-    /* -webkit-text-fill-color: #ffffff !important; */
-    -webkit-text-fill-color: #1a1632 !important;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background-color: transparent !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
 }
 
 .toast-success {

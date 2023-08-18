@@ -1,5 +1,5 @@
 <div>
-  <section class="max-w-4xl mx-auto bg-primary-b text-primary-t px-4">
+  <section class="max-w-4xl mx-auto text-primary-t px-4">
     <div class="mt-6">
       <div class="text-center mb-3">
         <header>
@@ -14,7 +14,7 @@
             Name</label>
           <!-- First name input -->
           <input formControlName="firstName" name="firstName" type="text"
-            class="w-full p-3 bg-primary-b text-primary-t rounded-full border border-primary-t focus: outline-none focus:border-accent-b">
+            class="w-full p-3 bg-primary-b text-primary-t rounded-full border border-primary-t focus: outline-none focus:border-accent-b hover:bg-primary-t hover:bg-opacity-10 focus:bg-primary-t focus:bg-opacity-10">
         </div>
         <!-- Validate first name -->
         <div class="h-4 mt-1.5 mb-0.5 pl-0.5">
@@ -33,7 +33,7 @@
             Name</label>
           <!-- Last name input -->
           <input formControlName="lastName" name="lastName" type="text"
-            class="w-full p-3 bg-primary-b text-primary-t rounded-full border border-primary-t focus: outline-none focus:border-accent-b">
+            class="w-full p-3 bg-primary-b text-primary-t rounded-full border border-primary-t focus: outline-none focus:border-accent-b hover:bg-primary-t hover:bg-opacity-10 focus:bg-primary-t focus:bg-opacity-10">
         </div>
         <!-- Validate last name -->
         <div class="h-4 mt-1.5 mb-0.5 pl-0.5">
@@ -71,7 +71,7 @@
             </div>
             <!-- Mobile number input -->
             <input formControlName="mobile" name="mobile" id="phone" type="tel"
-              class="flex-grow p-3 bg-primary-b text-primary-t rounded-r-full rounded-l-none border-l border-primary-t focus:outline-none">
+              class="flex-grow p-3 bg-primary-b text-primary-t rounded-r-full rounded-l-none border-l border-primary-t overflow-hidden focus:outline-none hover:bg-primary-t hover:bg-opacity-10 focus:bg-primary-t focus:bg-opacity-10">
           </div>
         </div>
         <!-- Validate mobile number -->
@@ -87,7 +87,7 @@
           <label for="pin" class="mb-1 font-audiowide font-thin font-xs indent-1 text-primary-t">Pin</label>
           <!-- Pin input -->
           <input type="password" formControlName="pin" name="pin" minlength="4" maxlength="10"
-            class="w-full p-3 bg-primary-b text-primary-t rounded-full border border-primary-t focus:outline-none focus:border-accent-b">
+            class="w-full p-3 bg-primary-b text-primary-t rounded-full border border-primary-t focus:outline-none focus:border-accent-b hover:bg-primary-t hover:bg-opacity-10 focus:bg-primary-t focus:bg-opacity-10">
         </div>
         <!-- Validate pin -->
         <div class="h-4 mt-1.5 mb-0.5 pl-0.5 max-h-fit">
@@ -111,16 +111,16 @@
             Pin</label>
           <!-- Confirm pin input -->
           <input type="password" formControlName="confirmPin" name="confirmPin" minlength="4" maxlength="10"
-            class="w-full p-3 bg-primary-b text-primary-t rounded-full border border-primary-t focus:outline-none focus:border-accent-b">
+            class="w-full p-3 bg-primary-b text-primary-t rounded-full border border-primary-t focus:outline-none focus:border-accent-b hover:bg-primary-t hover:bg-opacity-10 focus:bg-primary-t focus:bg-opacity-10">
         </div>
         <!-- Validate confirm pin -->
-        <div class="h-4 mt-1.5 mb-0.5 pl-0.5">
+        <div class="min-h-[1rem] mt-1.5 mb-0.5 pl-0.5">
           <div class="text-xs text-error-t" slot="error"
           *ngIf="(f['confirmPin'].dirty || f['confirmPin'].touched) &&  f['confirmPin'].hasError">
-          <p *ngIf="f['confirmPin'].errors?.['required']">
+          <p class="mb-3" *ngIf="f['confirmPin'].errors?.['required']">
             Pin Confirmation is Required.
           </p>
-          <p *ngIf="!f['confirmPin'].errors?.['required'] && f['confirmPin'].errors?.['mismatch']">
+          <p class="mb-3" *ngIf="!f['confirmPin'].errors?.['required'] && f['confirmPin'].errors?.['mismatch']">
             Pin Does Not Match.
           </p>
         </div>
@@ -132,7 +132,7 @@
             (click)="onSubmit()">CREATE
             ACCOUNT</button>
           <button type="button"
-            class="flex justify-center items-center h-14 md:h-12 text-secondary-d font-light font-audiowide bg-primary-b py-2 px-8 rounded-full outline outline-2 outline-primary-d hover:bg-secondary-d"
+            class="flex justify-center items-center h-14 md:h-12 text-secondary-d font-light font-audiowide bg-primary-b py-2 px-8 rounded-full outline outline-2 outline-primary-d hover:bg-secondary-b"
             (click)="clearForm()">CLEAR</button>
         </div>
       </form>

@@ -57,15 +57,6 @@ export class SessionService {
       if ('Created' in result) {
         const wallet = result.Created;
         this.sessionStore.update({ wallet, pin });
-        /*try {
-          await this.searchService.insertWalletAddress({
-            wallet_id: wallet.wallet_id,
-            phone_number: wallet.phone_number,
-            owner_name: wallet.owner_name,
-          });
-        } catch (err) {
-          console.log(err);
-        }*/
         return wallet.wallet_id;
       } else if ('Failed' in result) {
         this.sessionStore.setError(result);

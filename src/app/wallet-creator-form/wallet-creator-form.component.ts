@@ -152,7 +152,7 @@ export class WalletCreatorFormComponent implements OnInit {
         console.log(wallet_id);
         this.walletid = wallet_id;
         this.router.navigate(['/display-wallet'])
-
+        
       } catch (err) {
         console.log(err)
       }
