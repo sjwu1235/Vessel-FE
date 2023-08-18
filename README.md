@@ -6,7 +6,7 @@ This site is accessible at https://vessel-tc.network/home. To test:
 3. On XRPL, you need to fund your account before you can transact with it. We have, in the past, implemented an autofund feature which would form part of the next phase of this project. For now, please go to the XRPL testnet faucet to fund the escrow wallet account manually.
 4. The **opt-in** button provides a form to manually opt-in to the asset that the escrow account should recieve, for now, the asset issuer and asset name has been hardcoded for demonstration purposes. In future, there will be an option for the user to enter the issuer details and asset symbol or pick from a predefined set of assets and issuers.
 
-This is simply the front end of Vessel, please see the demo-video and documentation on the full system architecture for more information.
+This is simply the front end of Vessel, please see the demo-video and documentation on the full system architecture or for more information.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8.
 
