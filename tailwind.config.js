@@ -76,6 +76,9 @@ module.exports = {
       //   'inner-xl': '0 0 0 50px inset #1a1632 !important',
       //   'inner-sm': '0 0 0 2px #1a1632a2 !important'
       // },
+      backgroundImage: {
+        "background-image": 'url("https://www.transparenttextures.com/patterns/axiom-pattern.png")'
+      },
       boxShadow: {
         'inner-xl': '0 0 0 100px inset transparent !important',
         'inner-sm': '0 0 0 2px inset transparent !important'
